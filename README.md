@@ -38,10 +38,10 @@ import "simpleenv" // or your local path
 
 main :: proc() {
     // 1. Load the .env file
-    res := simpleenv.config()
+    res, ok := simpleenv.config()
     
     // 2. Check if loading was successful
-    if !simpleenv.success(res) {
+    if !ok {
         fmt.eprintln("Failed to load .env:", res.read_error)
         return
     }
@@ -77,5 +77,5 @@ opts := simpleenv.Config_Options{
     path = ".env.local", // Custom config file path
     override = true,     // Overwrite existing environment variables (default: false)
 }
-simpleenv.config(opts)
+res, ok := simpleenv.config(opts)
 ```

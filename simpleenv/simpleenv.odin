@@ -340,7 +340,7 @@ populate :: proc(env: Map, override := false) -> (loaded: int, set_error: os.Err
 	return loaded, nil
 }
 
-config :: proc(options := DEFAULT_CONFIG_OPTIONS, allocator := context.allocator, loc := #caller_location) -> (result: Result) {
+config :: proc(options := DEFAULT_CONFIG_OPTIONS, allocator := context.allocator, loc := #caller_location) -> (result: Result, ok: bool) {
 	path := options.path
 	if path == "" {
 		path = DEFAULT_CONFIG_OPTIONS.path
@@ -352,5 +352,6 @@ config :: proc(options := DEFAULT_CONFIG_OPTIONS, allocator := context.allocator
 	}
 
 	result.loaded, result.set_error = populate(result.parsed, options.override)
+	ok = result.read_error == nil && result.set_error == nil && result.alloc_error == nil
 	return
 }
