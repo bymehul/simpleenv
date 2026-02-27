@@ -1,0 +1,8 @@
+.env
+test.odin
+test_multiline.odin
+test
+test_multiline
+.vscode/
+build/
+*.bin

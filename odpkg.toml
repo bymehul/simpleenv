@@ -1,0 +1,6 @@
+[odpkg]
+name = "simpleenv"
+version = "0.1.0"
+vendor_dir = "vendor"
+
+[dependencies]
